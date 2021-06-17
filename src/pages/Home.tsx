@@ -9,13 +9,14 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonListHeader,
   IonModal,
   IonPage,
   IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { add, close } from "ionicons/icons";
+import { add, checkmark, close, podium } from "ionicons/icons";
 
 import { gameStats } from "../data/gameData";
 import { player } from "../data/playerData";
@@ -37,7 +38,7 @@ const Home: React.FC = () => {
     }
   }
 
-  var addPlayerForm = true;
+  var addPlayerForm = false;
 
   return (
     <IonPage>
@@ -83,9 +84,34 @@ const Home: React.FC = () => {
             </IonTitle>
           </IonContent>
         ) : (
-          <IonList>
+          <IonList inset={true}>
+            <IonItem>
+              <IonLabel slot="start">
+                <strong>Name</strong>
+              </IonLabel>
+              <IonLabel slot="end" color="primary">
+                <IonIcon icon={podium}></IonIcon>
+              </IonLabel>
+              <IonLabel slot="end" color="success">
+                <IonIcon icon={checkmark}></IonIcon>{" "}
+              </IonLabel>
+              <IonLabel slot="end" color="danger">
+                <IonIcon icon={close}></IonIcon>
+              </IonLabel>
+            </IonItem>
             {player.map((p: any, i: any) => (
-              <IonItem key={i}>{p.name}</IonItem>
+              <IonItem key={i}>
+                <IonLabel slot="start">{p.name}</IonLabel>
+                <IonLabel slot="end" color="primary">
+                  {p.playedGames}
+                </IonLabel>
+                <IonLabel slot="end" color="success">
+                  {p.won}
+                </IonLabel>
+                <IonLabel slot="end" color="danger">
+                  {p.lost}
+                </IonLabel>
+              </IonItem>
             ))}
           </IonList>
         )}
