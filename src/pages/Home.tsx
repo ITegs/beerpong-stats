@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonAlert,
   IonButton,
@@ -9,17 +9,16 @@ import {
   IonItem,
   IonLabel,
   IonList,
-  IonListHeader,
   IonModal,
   IonPage,
-  IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import { add, checkmark, close, podium } from "ionicons/icons";
 
-import { gameStats } from "../data/gameData";
-import { player } from "../data/playerData";
+import "./Home.css";
+
+import { playerData, gameStats } from "../data/data";
 
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +28,7 @@ const Home: React.FC = () => {
   function addPlayer() {
     if (newName != "") {
       var newPlayer = { name: newName, playedGames: 0, won: 0, lost: 0 };
-      player.push(newPlayer);
+      playerData.push(newPlayer);
 
       setNewName("");
       setShowModal(false);
@@ -38,7 +37,6 @@ const Home: React.FC = () => {
     }
   }
 
-  var addPlayerForm = false;
 
   return (
     <IonPage>
@@ -60,61 +58,37 @@ const Home: React.FC = () => {
             </IonButton>
           </IonToolbar>
         </IonHeader>
-        {addPlayerForm ? (
-          <IonContent>
-            <IonTitle>
-              {player.map((p: any, i: number) => (
-                <IonButton key={i} size="small">
-                  {p.name}
-                  <IonIcon icon={close} />
-                </IonButton>
-              ))}
-              <IonInput
-                type="text"
-                placeholder="Spielername"
-                onIonChange={(e) => setNewName(e.detail.value!)}
-              ></IonInput>
-              <IonButton
-                fill="outline"
-                onClick={() => addPlayer()}
-                type="submit"
-              >
-                <IonIcon icon={add} />
-              </IonButton>
-            </IonTitle>
-          </IonContent>
-        ) : (
-          <IonList inset={true}>
-            <IonItem>
-              <IonLabel slot="start">
-                <strong>Name</strong>
-              </IonLabel>
+
+        <IonList inset={true}>
+          <IonItem>
+            <IonLabel slot="start">
+              <strong>Name</strong>
+            </IonLabel>
+            <IonLabel slot="end" color="primary">
+              <IonIcon icon={podium}></IonIcon>
+            </IonLabel>
+            <IonLabel slot="end" color="success">
+              <IonIcon icon={checkmark}></IonIcon>
+            </IonLabel>
+            <IonLabel slot="end" color="danger">
+              <IonIcon icon={close}></IonIcon>
+            </IonLabel>
+          </IonItem>
+          {playerData.map((p: any, i: any) => (
+            <IonItem key={i}>
+              <IonLabel slot="start">{p.name}</IonLabel>
               <IonLabel slot="end" color="primary">
-                <IonIcon icon={podium}></IonIcon>
+                {p.playedGames}
               </IonLabel>
               <IonLabel slot="end" color="success">
-                <IonIcon icon={checkmark}></IonIcon>{" "}
+                {p.won}
               </IonLabel>
               <IonLabel slot="end" color="danger">
-                <IonIcon icon={close}></IonIcon>
+                {p.lost}
               </IonLabel>
             </IonItem>
-            {player.map((p: any, i: any) => (
-              <IonItem key={i}>
-                <IonLabel slot="start">{p.name}</IonLabel>
-                <IonLabel slot="end" color="primary">
-                  {p.playedGames}
-                </IonLabel>
-                <IonLabel slot="end" color="success">
-                  {p.won}
-                </IonLabel>
-                <IonLabel slot="end" color="danger">
-                  {p.lost}
-                </IonLabel>
-              </IonItem>
-            ))}
-          </IonList>
-        )}
+          ))}
+        </IonList>
       </IonContent>
 
       <IonModal isOpen={showModal}>
