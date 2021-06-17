@@ -17,7 +17,8 @@ import {
 } from "@ionic/react";
 import { add, close } from "ionicons/icons";
 
-import "./Home.css";
+import { gameStats } from "../data/gameData";
+import { player } from "../data/playerData";
 
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +27,8 @@ const Home: React.FC = () => {
 
   function addPlayer() {
     if (newName != "") {
-      player.push(newName);
+      var newPlayer = { name: newName, playedGames: 0, won: 0, lost: 0 };
+      player.push(newPlayer);
 
       setNewName("");
       setShowModal(false);
@@ -35,8 +37,6 @@ const Home: React.FC = () => {
     }
   }
 
-  const [player, setPlayer] = useState<any>([]);
-  const [stats, setStats] = useState<any>([]);
   var addPlayerForm = true;
 
   return (
@@ -63,11 +63,8 @@ const Home: React.FC = () => {
           <IonContent>
             <IonTitle>
               {player.map((p: any, i: number) => (
-                <IonButton
-                  key={i}
-                  size="small"
-                >
-                  {p}
+                <IonButton key={i} size="small">
+                  {p.name}
                   <IonIcon icon={close} />
                 </IonButton>
               ))}
@@ -87,8 +84,8 @@ const Home: React.FC = () => {
           </IonContent>
         ) : (
           <IonList>
-            {player.map((p: any) => (
-              <IonItem key={p}>{p}</IonItem>
+            {player.map((p: any, i: any) => (
+              <IonItem key={i}>{p.name}</IonItem>
             ))}
           </IonList>
         )}
