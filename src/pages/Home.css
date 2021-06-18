@@ -11,5 +11,10 @@
 }
 
 .playerFormSubmit {
-    text-align: center;
+  text-align: center;
+}
+
+.listHeader {
+  font-weight: bold;
+  letter-spacing: 0.1em;
 }

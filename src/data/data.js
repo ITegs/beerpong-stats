@@ -17,10 +17,28 @@ export const playerData = [
     won: 0,
     lost: 8,
   },
+  {
+    name: "YEET",
+    playedGames: 8,
+    won: 0,
+    lost: 8,
+  },
 ];
 
 export const gameStats = [
   {
-    lol: 3,
+    red: [1, 0],
+    blue: [3],
+    won: "blue",
+  },
+  {
+    red: [0],
+    blue: [1, 3],
+    won: "blue",
+  },
+  {
+    red: [1, 3],
+    blue: [0],
+    won: "red",
   },
 ];

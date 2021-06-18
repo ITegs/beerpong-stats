@@ -7,6 +7,7 @@ import {
   IonIcon,
   IonInput,
   IonItem,
+  IonItemGroup,
   IonLabel,
   IonList,
   IonModal,
@@ -14,7 +15,14 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { add, checkmark, close, podium } from "ionicons/icons";
+import {
+  add,
+  arrowDown,
+  arrowUp,
+  checkmark,
+  close,
+  podium,
+} from "ionicons/icons";
 
 import "./Home.css";
 
@@ -25,6 +33,7 @@ const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [newName, setNewName] = useState<string>("");
   const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
+  const [showPlayer, setShowPlayer] = useState(true);
 
   function addPlayer() {
     if (newName != "") {
@@ -68,33 +77,104 @@ const Home: React.FC = () => {
 
         <IonList inset={true}>
           <IonItem>
-            <IonLabel slot="start">
-              <strong>Name</strong>
-            </IonLabel>
-            <IonLabel slot="end" color="primary">
-              <IonIcon icon={podium}></IonIcon>
-            </IonLabel>
-            <IonLabel slot="end" color="success">
-              <IonIcon icon={checkmark}></IonIcon>
-            </IonLabel>
-            <IonLabel slot="end" color="danger">
-              <IonIcon icon={close}></IonIcon>
-            </IonLabel>
+            <div className="listHeader">
+              <IonLabel slot="start" color="primary">
+                Spieler
+              </IonLabel>
+            </div>
+
+            <IonButton
+              slot="end"
+              fill="clear"
+              onClick={() => setShowPlayer(!showPlayer)}
+            >
+              {showPlayer ? (
+                <IonIcon icon={arrowUp} />
+              ) : (
+                <IonIcon icon={arrowDown} />
+              )}
+            </IonButton>
           </IonItem>
-          {playerData.map((p: any, i: any) => (
-            <IonItem key={i}>
-              <IonLabel slot="start">{p.name}</IonLabel>
+
+          {showPlayer ? (
+            <IonList lines="none">
+              <IonItem>
+                <IonLabel slot="start">
+                  <strong>Name</strong>
+                </IonLabel>
+                <IonLabel slot="end" color="primary">
+                  <IonIcon icon={podium}></IonIcon>
+                </IonLabel>
+                <IonLabel slot="end" color="success">
+                  <IonIcon icon={checkmark}></IonIcon>
+                </IonLabel>
+                <IonLabel slot="end" color="danger">
+                  <IonIcon icon={close}></IonIcon>
+                </IonLabel>
+              </IonItem>
+              {playerData.map((p: any, i: number) => (
+                <IonItem key={i}>
+                  <IonLabel slot="start">{p.name}</IonLabel>
+                  <IonLabel slot="end" color="primary">
+                    {p.playedGames}
+                  </IonLabel>
+                  <IonLabel slot="end" color="success">
+                    {p.won}
+                  </IonLabel>
+                  <IonLabel slot="end" color="danger">
+                    {p.lost}
+                  </IonLabel>
+                </IonItem>
+              ))}
+            </IonList>
+          ) : null}
+
+          <IonItem>
+            <div className="listHeader">
+              <IonLabel slot="start" color="primary">
+                Gespielte Spiele
+              </IonLabel>
+            </div>
+          </IonItem>
+          <IonList>
+            <IonItem>
+              <IonLabel slot="start" color="danger">
+                Rot
+              </IonLabel>
               <IonLabel slot="end" color="primary">
-                {p.playedGames}
-              </IonLabel>
-              <IonLabel slot="end" color="success">
-                {p.won}
-              </IonLabel>
-              <IonLabel slot="end" color="danger">
-                {p.lost}
+                Blau
               </IonLabel>
             </IonItem>
-          ))}
+            {gameStats.map((g: any, i: number) =>
+              g.won === "red" ? (
+                <IonItem key={i}>
+                  <IonLabel slot="start" color="success">
+                    {g.red.map((c: any, ii: number) => (
+                      <IonLabel key={ii}>{playerData[ii].name}</IonLabel>
+                    ))}
+                  </IonLabel>
+                  <IonLabel slot="end" color="danger">
+                    {g.blue.map((c: any, ii: number) => (
+                      <IonLabel key={ii}>{playerData[ii].name}</IonLabel>
+                    ))}
+                  </IonLabel>
+                </IonItem>
+              ) : (
+                <IonItem key={i}>
+                  <IonLabel slot="start" color="danger">
+                    {g.red.map((c: any, ii: number) => (
+                      <IonLabel key={ii}>{playerData[ii].name}</IonLabel>
+                    ))}
+                  </IonLabel>
+                  <IonLabel slot="end" color="success">
+                    {g.blue.map((c: any, ii: number) => (
+                      <IonLabel key={ii}>{playerData[ii].name}</IonLabel>
+                    ))}
+                  </IonLabel>
+                </IonItem>
+              )
+            )}
+          </IonList>
         </IonList>
       </IonContent>
       <IonModal isOpen={showModal}>

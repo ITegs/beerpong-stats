@@ -12,7 +12,7 @@ import {
 } from "@ionic/react";
 import { add, checkmark, close } from "ionicons/icons";
 
-import { playerData, gameStats } from "../data/data";
+import { playerData } from "../data/data";
 import { Redirect } from "react-router";
 
 const AddPlayer: React.FC = () => {
@@ -30,14 +30,13 @@ const AddPlayer: React.FC = () => {
     }
   }
 
-
-  function checkRedirect() {
-    if (playerData.length == 0) {
-      setShowAddPlayerAlert(true);
-    } else {
-      return <Redirect to="/" />;
-    }
-  }
+  // function checkRedirect() {
+  //   if (playerData.length == 0) {
+  //     setShowAddPlayerAlert(true);
+  //   } else {
+  //     return <Redirect to="/" />;
+  //   }
+  // }
 
   return (
     <IonPage>
@@ -55,7 +54,13 @@ const AddPlayer: React.FC = () => {
         <IonContent>
           <div className="playerListButtons">
             {playerData.map((p: any, i: number) => (
-              <IonButton key={i} size="small" onClick={() => (playerData.splice(i, 1), setNewName("bug ;D"))}>
+              <IonButton
+                key={i}
+                size="small"
+                onClick={() => (
+                  playerData.splice(i, 1), setNewName(Math.random().toString())
+                )}
+              >
                 {p.name}
                 <IonIcon icon={close} />
               </IonButton>
@@ -76,7 +81,8 @@ const AddPlayer: React.FC = () => {
             <IonButton
               color="success"
               size="large"
-              onClick={() => checkRedirect()}
+              // onClick={() => checkRedirect()}
+              routerLink="/home"
             >
               <IonIcon icon={checkmark}></IonIcon>
             </IonButton>
