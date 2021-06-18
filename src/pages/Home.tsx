@@ -19,6 +19,7 @@ import { add, checkmark, close, podium } from "ionicons/icons";
 import "./Home.css";
 
 import { playerData, gameStats } from "../data/data";
+import { Redirect } from "react-router";
 
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -37,9 +38,15 @@ const Home: React.FC = () => {
     }
   }
 
+  function redirect() {
+    if (playerData.length == 0) {
+      return <Redirect to="/addPlayer" />;
+    }
+  }
 
   return (
     <IonPage>
+      {redirect()}
       <IonHeader>
         <IonToolbar>
           <IonTitle>Beerpong Stats</IonTitle>
@@ -90,7 +97,6 @@ const Home: React.FC = () => {
           ))}
         </IonList>
       </IonContent>
-
       <IonModal isOpen={showModal}>
         <IonHeader>
           <IonToolbar>
