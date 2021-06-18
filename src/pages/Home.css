@@ -18,3 +18,20 @@
   font-weight: bold;
   letter-spacing: 0.1em;
 }
+
+.selectContainer,
+.winnerContainer {
+  font-size: 1.5em;
+  padding: 1.7em;
+  text-align: left;
+}
+
+.selector,
+.winnerSegment {
+  text-align: center;
+}
+
+.addGameButton {
+  text-align: center;
+  padding-bottom: 4em;
+}

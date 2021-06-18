@@ -5,13 +5,15 @@ import {
   IonContent,
   IonHeader,
   IonIcon,
-  IonInput,
   IonItem,
-  IonItemGroup,
   IonLabel,
   IonList,
   IonModal,
   IonPage,
+  IonSegment,
+  IonSegmentButton,
+  IonSelect,
+  IonSelectOption,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -31,17 +33,47 @@ import { Redirect } from "react-router";
 
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const [newName, setNewName] = useState<string>("");
   const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
   const [showPlayer, setShowPlayer] = useState(true);
 
-  function addPlayer() {
-    if (newName != "") {
-      var newPlayer = { name: newName, playedGames: 0, won: 0, lost: 0 };
-      playerData.push(newPlayer);
+  const [redTeam, setRedTeam] = useState([]);
+  const [blueTeam, setBlueTeam] = useState([]);
+  const [winner, setWinner] = useState<any>("");
 
-      setNewName("");
-      setShowModal(false);
+  function addGame() {
+    if (redTeam != []) {
+      if (blueTeam != []) {
+        var newGame = { red: redTeam, blue: blueTeam, won: winner };
+        gameStats.unshift(newGame);
+
+        if (winner == "red") {
+          redTeam.map(
+            (t: any, i: number) => (
+              playerData[t].won++, playerData[t].playedGames++
+            )
+          );
+          blueTeam.map(
+            (t: any, i: number) => (
+              playerData[t].lost++, playerData[t].playedGames++
+            )
+          );
+        } else {
+          redTeam.map(
+            (t: any, i: number) => (
+              playerData[t].lost++, playerData[t].playedGames++
+            )
+          );
+          blueTeam.map(
+            (t: any, i: number) => (
+              playerData[t].won++, playerData[t].playedGames++
+            )
+          );
+        }
+
+        setShowModal(false);
+      } else {
+        setShowAddPlayerAlert(true);
+      }
     } else {
       setShowAddPlayerAlert(true);
     }
@@ -139,10 +171,10 @@ const Home: React.FC = () => {
           <IonList>
             <IonItem>
               <IonLabel slot="start" color="danger">
-                Rot
+                <strong>Rot</strong>
               </IonLabel>
               <IonLabel slot="end" color="primary">
-                Blau
+                <strong>Blau</strong>
               </IonLabel>
             </IonItem>
             {gameStats.map((g: any, i: number) =>
@@ -150,12 +182,12 @@ const Home: React.FC = () => {
                 <IonItem key={i}>
                   <IonLabel slot="start" color="success">
                     {g.red.map((c: any, ii: number) => (
-                      <IonLabel key={ii}>{playerData[ii].name}</IonLabel>
+                      <IonLabel key={ii}>{playerData[c].name}</IonLabel>
                     ))}
                   </IonLabel>
                   <IonLabel slot="end" color="danger">
                     {g.blue.map((c: any, ii: number) => (
-                      <IonLabel key={ii}>{playerData[ii].name}</IonLabel>
+                      <IonLabel key={ii}>{playerData[c].name}</IonLabel>
                     ))}
                   </IonLabel>
                 </IonItem>
@@ -163,12 +195,12 @@ const Home: React.FC = () => {
                 <IonItem key={i}>
                   <IonLabel slot="start" color="danger">
                     {g.red.map((c: any, ii: number) => (
-                      <IonLabel key={ii}>{playerData[ii].name}</IonLabel>
+                      <IonLabel key={ii}>{playerData[c].name}</IonLabel>
                     ))}
                   </IonLabel>
                   <IonLabel slot="end" color="success">
                     {g.blue.map((c: any, ii: number) => (
-                      <IonLabel key={ii}>{playerData[ii].name}</IonLabel>
+                      <IonLabel key={ii}>{playerData[c].name}</IonLabel>
                     ))}
                   </IonLabel>
                 </IonItem>
@@ -180,7 +212,7 @@ const Home: React.FC = () => {
       <IonModal isOpen={showModal}>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Neuer Spieler</IonTitle>
+            <IonTitle>Spiel eintragen</IonTitle>
             <IonButton
               slot="end"
               fill="outline"
@@ -191,16 +223,54 @@ const Home: React.FC = () => {
             </IonButton>
           </IonToolbar>
         </IonHeader>
-        <IonTitle>
-          <IonInput
-            type="text"
-            placeholder="Spielername"
-            onIonChange={(e) => setNewName(e.detail.value!)}
-          ></IonInput>
-          <IonButton fill="outline" onClick={() => addPlayer()}>
+        <div className="selectContainer">
+          <IonLabel>Teams:</IonLabel>
+          <div className="selector">
+            <IonSelect
+              placeholder="Team Rot"
+              multiple={true}
+              onIonChange={(e) => setRedTeam(e.detail.value)}
+            >
+              {playerData.map((p: any, i: number) => (
+                <IonSelectOption key={i} value={i}>
+                  {p.name}
+                </IonSelectOption>
+              ))}
+            </IonSelect>
+          </div>
+          <div className="selector">
+            <IonSelect
+              placeholder="Team Blau"
+              multiple={true}
+              onIonChange={(e) => setBlueTeam(e.detail.value)}
+            >
+              {playerData.map((p: any, i: number) => (
+                <IonSelectOption key={i} value={i}>
+                  {p.name}
+                </IonSelectOption>
+              ))}
+            </IonSelect>
+          </div>
+        </div>
+
+        <div className="winnerContainer">
+          <IonLabel>Gewinner Team:</IonLabel>
+          <div className="winnerSegment">
+            <IonSegment onIonChange={(e) => setWinner(e.detail.value)}>
+              <IonSegmentButton value="red">
+                <strong>Rot</strong>
+              </IonSegmentButton>
+              <IonSegmentButton value="blue">
+                <strong>Blau</strong>
+              </IonSegmentButton>
+            </IonSegment>
+          </div>
+        </div>
+        <div className="addGameButton">
+          <IonButton fill="outline" size="large" onClick={() => addGame()}>
             <IonIcon icon={add} />
           </IonButton>
-        </IonTitle>
+        </div>
       </IonModal>
       <IonAlert
         isOpen={showAddPlayerAlert}
