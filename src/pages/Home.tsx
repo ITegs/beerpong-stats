@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   IonAlert,
   IonButton,
@@ -27,15 +27,16 @@ import {
 } from "ionicons/icons";
 
 import "./Home.css";
+import { Redirect } from "react-router";
 
 import { playerData, gameStats } from "../data/data";
-import { Redirect } from "react-router";
+import Tournament from "../components/tournament";
 
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
-  const [showPlayer, setShowPlayer] = useState(true);
-  const [showGames, setShowGames] = useState(true);
+  const [showPlayer, setShowPlayer] = useState(false);
+  const [showGames, setShowGames] = useState(false);
   const [showTournament, setShowTournament] = useState(true);
 
   const [redTeam, setRedTeam] = useState([]);
@@ -264,10 +265,9 @@ const Home: React.FC = () => {
             </IonButton>
           </IonItem>
 
-          {showTournament ? <IonLabel>code here</IonLabel> : null}
+          {showTournament ? <Tournament /> : null}
         </IonList>
       </IonContent>
-
       <IonModal isOpen={showModal}>
         <IonHeader>
           <IonToolbar>
