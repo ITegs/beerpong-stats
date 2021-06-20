@@ -13,7 +13,6 @@ import {
 import { add, checkmark, close } from "ionicons/icons";
 
 import { playerData } from "../data/data";
-import { Redirect } from "react-router";
 
 const AddPlayer: React.FC = () => {
   const [newName, setNewName] = useState<string>("");
@@ -29,14 +28,6 @@ const AddPlayer: React.FC = () => {
       setShowAddPlayerAlert(true);
     }
   }
-
-  // function checkRedirect() {
-  //   if (playerData.length == 0) {
-  //     setShowAddPlayerAlert(true);
-  //   } else {
-  //     return <Redirect to="/" />;
-  //   }
-  // }
 
   return (
     <IonPage>
@@ -81,7 +72,6 @@ const AddPlayer: React.FC = () => {
             <IonButton
               color="success"
               size="large"
-              // onClick={() => checkRedirect()}
               routerLink="/home"
             >
               <IonIcon icon={checkmark}></IonIcon>

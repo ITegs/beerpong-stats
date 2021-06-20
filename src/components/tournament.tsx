@@ -22,8 +22,10 @@ const Tournament: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
 
-  const [curRound, setCurRound] = useState<number>(0);
+  const [curRound, setCurRound] = useState<any>([0, 0]);
   const [winner, setWinner] = useState<any>("");
+
+  const [removeTeam, setRemoveTeam] = useState([]);
 
   const [state, setState] = useState(0);
   const [teams, setTeams] = useState([
@@ -37,7 +39,43 @@ const Tournament: React.FC = () => {
     [2, 3],
   ]);
 
-  function addGame() {}
+  function addGame() {
+    var newGame = {
+      red: teams[curRound[0]].map((r: any, i: number) => r),
+      blue: teams[curRound[1]].map((r: any, i: number) => r),
+      won: winner,
+    };
+    gameStats.unshift(newGame);
+
+    if (winner == "red") {
+      teams[curRound[0]].map(
+        (r: any, i: number) => (
+          playerData[r].won++, playerData[r].playedGames++
+        )
+      );
+      teams[curRound[1]].map(
+        (r: any, i: number) => (
+          playerData[r].lost++, playerData[r].playedGames++
+        )
+      );
+      setRemoveTeam(removeTeam.concat(curRound[1]));
+    } else {
+      teams[curRound[0]].map(
+        (r: any, i: number) => (
+          playerData[r].lost++, playerData[r].playedGames++
+        )
+      );
+      teams[curRound[1]].map(
+        (r: any, i: number) => (
+          playerData[r].won++, playerData[r].playedGames++
+        )
+      );
+      setRemoveTeam(removeTeam.concat(curRound[0]));
+    }
+    console.log(removeTeam);
+
+    setShowModal(false);
+  }
 
   return (
     <>
@@ -104,15 +142,19 @@ const Tournament: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <div className="selectContainer">
-          <IonLabel>Teams:</IonLabel>
+          <IonLabel color="danger">Rot:</IonLabel>
           <div className="selector">
-            {rounds[curRound].map((r: any, i: number) => {
-              teams[r].map((t: any, ii: number) => (
-                <div key={ii}>{playerData[t].name + " "}</div>
-              ));
-            })}
+            {teams[curRound[0]].map((r: any, i: number) => (
+              <div key={i}>{playerData[r].name}</div>
+            ))}
           </div>
-          <div className="selector">lol</div>
+          <br />
+          <IonLabel color="tertiary">Blau:</IonLabel>
+          <div className="selector">
+            {teams[curRound[1]].map((r: any, i: number) => (
+              <div key={i}>{playerData[r].name}</div>
+            ))}
+          </div>
         </div>
 
         <div className="winnerContainer">

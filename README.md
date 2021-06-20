@@ -1,5 +1,5 @@
 # Beerpong Stats
-Shows the results of the last beer pong matches.
+Beer pong players and rounds statistics + Random tournament generator.
 
 ## TODO:
 * `addPlayer.tsx`: `removePlayer-Button` does't refresh
