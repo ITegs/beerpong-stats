@@ -13,7 +13,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { add, arrowForwardCircle, code } from "ionicons/icons";
+import { add, arrowForwardCircle, checkmark, code } from "ionicons/icons";
 
 import "./tournament.css";
 import { playerData, gameStats } from "../data/data";
@@ -25,7 +25,9 @@ const Tournament: React.FC = () => {
   const [curRound, setCurRound] = useState<any>([0, 0]);
   const [winner, setWinner] = useState<any>("");
 
-  const [removeTeam, setRemoveTeam] = useState([]);
+  const [removeTeam, setRemoveTeam] = useState<number[]>([]);
+  const [stateFinishedRound, setFinishedRound] = useState<boolean[]>([]);
+  var finishedRound: boolean[] = [];
 
   const [state, setState] = useState(0);
   const [teams, setTeams] = useState([
@@ -58,7 +60,7 @@ const Tournament: React.FC = () => {
           playerData[r].lost++, playerData[r].playedGames++
         )
       );
-      setRemoveTeam(removeTeam.concat(curRound[1]));
+      setRemoveTeam([...removeTeam, curRound[1]]);
     } else {
       teams[curRound[0]].map(
         (r: any, i: number) => (
@@ -70,9 +72,17 @@ const Tournament: React.FC = () => {
           playerData[r].won++, playerData[r].playedGames++
         )
       );
-      setRemoveTeam(removeTeam.concat(curRound[0]));
+      setRemoveTeam([...removeTeam, curRound[0]]);
     }
-    console.log(removeTeam);
+
+    rounds.map(
+      (r: number[], i: number) =>
+        // r == curRound ? setFinishedRound([...finishedRound, i]) : null
+        r == curRound
+          ? (finishedRound.splice(i, 0, true), setFinishedRound(finishedRound))
+          : null
+    );
+    console.log(finishedRound, stateFinishedRound);
 
     setShowModal(false);
   }
@@ -116,13 +126,29 @@ const Tournament: React.FC = () => {
                   <div key={ii}>{playerData[t].name}</div>
                 ))}
               </IonLabel>
-              <IonButton
-                fill="outline"
-                slot="end"
-                onClick={() => (setCurRound(r), setShowModal(true))}
-              >
-                <IonIcon icon={arrowForwardCircle} />
-              </IonButton>
+              {stateFinishedRound.length != 0 ? (
+                stateFinishedRound[i] == true ? (
+                  <IonButton fill="outline" slot="end">
+                    <IonIcon icon={checkmark} />
+                  </IonButton>
+                ) : (
+                  <IonButton
+                    fill="outline"
+                    slot="end"
+                    onClick={() => (setCurRound(r), setShowModal(true))}
+                  >
+                    <IonIcon icon={arrowForwardCircle} />
+                  </IonButton>
+                )
+              ) : (
+                <IonButton
+                  fill="outline"
+                  slot="end"
+                  onClick={() => (setCurRound(r), setShowModal(true))}
+                >
+                  <IonIcon icon={arrowForwardCircle} />
+                </IonButton>
+              )}
             </IonItem>
           ))}
         </IonList>
