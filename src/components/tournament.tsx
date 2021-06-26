@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  IonAlert,
   IonButton,
   IonContent,
   IonHeader,
@@ -13,14 +14,20 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { add, arrowForwardCircle, checkmark, code } from "ionicons/icons";
+import {
+  add,
+  arrowForwardCircle,
+  checkmark,
+  code,
+  refresh,
+} from "ionicons/icons";
 
 import "./tournament.css";
 import { playerData, gameStats } from "../data/data";
 
 const Tournament: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const [curRound, setCurRound] = useState<any>([0, 0]);
   const [winner, setWinner] = useState<any>("");
@@ -31,10 +38,8 @@ const Tournament: React.FC = () => {
 
   const [state, setState] = useState(0);
   const [teams, setTeams] = useState([
-    [0, 1],
-    [2, 3],
-    [4, 5],
-    [6, 7],
+    [0, 0],
+    [0, 0],
   ]);
   const [rounds, setRounds] = useState([
     [0, 1],
@@ -56,19 +61,41 @@ const Tournament: React.FC = () => {
   }
 
   function generateTeams() {
+    if (playerData.length % 4 == 0) {
+      const arr = [];
+      for (let i = 0; i < playerData.length; i++) {
+        arr.push(i);
+      }
+      const array = shuffle(arr);
+
+      var teamList = [];
+      for (let index = 0; index < array.length; index = index + 2) {
+        const team = [array[index], array[index + 1]];
+        teamList.push(team);
+      }
+
+      setTeams(teamList);
+      setState(1);
+    } else {
+      setShowAlert(true);
+    }
+  }
+
+  function generateRounds() {
     const arr = [];
-    for (let i = 0; i < playerData.length; i++) {
+    for (let i = 0; i < teams.length; i++) {
       arr.push(i);
     }
     const array = shuffle(arr);
 
-    var teamList = [];
+    var roundList = [];
     for (let index = 0; index < array.length; index = index + 2) {
-      const team = [array[index], array[index + 1]];
-      teamList.push(team);
+      const round = [array[index], array[index + 1]];
+      roundList.push(round);
     }
 
-    setTeams(teamList);
+    setRounds(roundList);
+    setState(2);
   }
 
   function addGame() {
@@ -120,7 +147,7 @@ const Tournament: React.FC = () => {
     <>
       {state == 0 ? (
         <div className="forwardButton">
-          <IonButton onClick={() => (generateTeams(), setState(1))}>
+          <IonButton onClick={() => generateTeams()}>
             Teams generieren
           </IonButton>
         </div>
@@ -137,7 +164,17 @@ const Tournament: React.FC = () => {
             </IonItem>
           ))}
           <div className="forwardButton">
-            <IonButton onClick={() => setState(2)}>Runden erstellen</IonButton>
+            <IonButton
+              onClick={() => generateTeams()}
+              fill="outline"
+              color="secondary"
+            >
+              <IonIcon icon={refresh} />
+            </IonButton>
+            <br />
+            <IonButton onClick={() => generateRounds()}>
+              Runden erstellen
+            </IonButton>
           </div>
         </IonList>
       ) : state == 2 ? (
@@ -233,6 +270,15 @@ const Tournament: React.FC = () => {
           </IonButton>
         </div>
       </IonModal>
+      <IonAlert
+        isOpen={showAlert}
+        onDidDismiss={() => setShowAlert(false)}
+        header={"Zu wenig Spieler"}
+        message={
+          "Frag doch noch ein paar Freunde, ob sie mitspielen wollen! ;)"
+        }
+        buttons={["OK"]}
+      />
     </>
   );
 };
