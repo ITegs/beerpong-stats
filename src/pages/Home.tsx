@@ -82,10 +82,11 @@ const Home: React.FC = () => {
     }
   }
 
+  var siteValid = false;
   function redirect() {
     if (playerData.length == 0) {
       return <Redirect to="/addPlayer" />;
-    }
+    } else siteValid = true;
   }
 
   return (
@@ -265,7 +266,7 @@ const Home: React.FC = () => {
             </IonButton>
           </IonItem>
 
-          {showTournament ? <Tournament /> : null}
+          {showTournament ? siteValid ? <Tournament /> : null : null}
         </IonList>
       </IonContent>
       <IonModal isOpen={showModal}>

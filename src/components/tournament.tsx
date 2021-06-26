@@ -60,6 +60,18 @@ const Tournament: React.FC = () => {
     return array;
   }
 
+  function newTeams() {
+    var i = 0;
+    const random = () => {
+      if (i <= 20) {
+        generateTeams();
+        i++;
+        setTimeout(random, 50);
+      }
+    };
+    random();
+  }
+
   function generateTeams() {
     if (playerData.length % 4 == 0) {
       const arr = [];
@@ -164,11 +176,7 @@ const Tournament: React.FC = () => {
             </IonItem>
           ))}
           <div className="forwardButton">
-            <IonButton
-              onClick={() => generateTeams()}
-              fill="outline"
-              color="secondary"
-            >
+            <IonButton onClick={() => newTeams()} fill="outline" color="secondary">
               <IonIcon icon={refresh} />
             </IonButton>
             <br />
