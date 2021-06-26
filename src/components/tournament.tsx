@@ -41,6 +41,36 @@ const Tournament: React.FC = () => {
     [2, 3],
   ]);
 
+  function shuffle(array: any) {
+    var tmp,
+      current,
+      top = array.length;
+    if (top)
+      while (--top) {
+        current = Math.floor(Math.random() * (top + 1));
+        tmp = array[current];
+        array[current] = array[top];
+        array[top] = tmp;
+      }
+    return array;
+  }
+
+  function generateTeams() {
+    const arr = [];
+    for (let i = 0; i < playerData.length; i++) {
+      arr.push(i);
+    }
+    const array = shuffle(arr);
+
+    var teamList = [];
+    for (let index = 0; index < array.length; index = index + 2) {
+      const team = [array[index], array[index + 1]];
+      teamList.push(team);
+    }
+
+    setTeams(teamList);
+  }
+
   function addGame() {
     var newGame = {
       red: teams[curRound[0]].map((r: any, i: number) => r),
@@ -75,12 +105,11 @@ const Tournament: React.FC = () => {
       setRemoveTeam([...removeTeam, curRound[0]]);
     }
 
-    rounds.map(
-      (r: number[], i: number) =>
-        // r == curRound ? setFinishedRound([...finishedRound, i]) : null
-        r == curRound
-          ? (finishedRound.splice(i, 0, true), setFinishedRound(finishedRound))
-          : null
+    rounds.map((r: number[], i: number) =>
+      // r == curRound ? setFinishedRound([...finishedRound, i]) : null
+      r == curRound
+        ? (finishedRound.splice(i, 0, true), setFinishedRound(finishedRound))
+        : null
     );
     console.log(finishedRound, stateFinishedRound);
 
@@ -91,7 +120,9 @@ const Tournament: React.FC = () => {
     <>
       {state == 0 ? (
         <div className="forwardButton">
-          <IonButton onClick={() => setState(1)}>Teams generieren</IonButton>
+          <IonButton onClick={() => (generateTeams(), setState(1))}>
+            Teams generieren
+          </IonButton>
         </div>
       ) : state == 1 ? (
         <IonList inset={true}>
