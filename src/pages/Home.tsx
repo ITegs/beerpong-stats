@@ -24,6 +24,7 @@ import {
   checkmark,
   close,
   podium,
+  remove,
 } from "ionicons/icons";
 
 import "./Home.css";
@@ -35,9 +36,11 @@ import Tournament from "../components/tournament";
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
-  const [showPlayer, setShowPlayer] = useState(false);
+  const [showCancelTournamentAlert, setShowCancelTournamentAlert] =
+    useState(false);
+  const [showPlayer, setShowPlayer] = useState(true);
   const [showGames, setShowGames] = useState(false);
-  const [showTournament, setShowTournament] = useState(true);
+  const [showTournament, setShowTournament] = useState(false);
 
   const [redTeam, setRedTeam] = useState([]);
   const [blueTeam, setBlueTeam] = useState([]);
@@ -196,7 +199,7 @@ const Home: React.FC = () => {
             </IonButton>
           </IonItem>
           {showGames ? (
-            <IonList>
+            <IonList lines="full">
               <IonItem>
                 <IonLabel slot="start" color="danger">
                   <strong>Rot</strong>
@@ -243,7 +246,11 @@ const Home: React.FC = () => {
               fill="outline"
               size="small"
               color="secondary"
-              routerLink="/addPlayer"
+              onClick={() => (
+                setShowPlayer(false),
+                setShowGames(false),
+                setShowTournament(true)
+              )}
             >
               <IonIcon icon={add} />
             </IonButton>
@@ -255,14 +262,10 @@ const Home: React.FC = () => {
 
             <IonButton
               slot="end"
-              fill="clear"
-              onClick={() => setShowTournament(!showTournament)}
+              fill="outline"
+              onClick={() => setShowCancelTournamentAlert(true)}
             >
-              {showTournament ? (
-                <IonIcon icon={arrowUp} />
-              ) : (
-                <IonIcon icon={arrowDown} />
-              )}
+              <IonIcon icon={remove} />
             </IonButton>
           </IonItem>
 
@@ -338,6 +341,16 @@ const Home: React.FC = () => {
         header={"Fehler"}
         message={"Bitte gib einen Spielernamen ein!"}
         buttons={["OK"]}
+      />
+      <IonAlert
+        isOpen={showCancelTournamentAlert}
+        onDidDismiss={() => setShowAddPlayerAlert(false)}
+        header={"Fehler"}
+        message={"Willst du die Meisterschaft wirklich beenden?"}
+        buttons={[
+          "Nein",
+          { text: "Beenden", handler: (d) => setShowTournament(false) },
+        ]}
       />
     </IonPage>
   );
