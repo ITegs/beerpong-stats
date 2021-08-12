@@ -1,0 +1,14 @@
+name: TODO
+description: This is what will be worked on
+title: ""
+labels: [todo]
+assignees:
+  - ITegs
+body:
+  -type: textarea
+    id: details
+    attributes:
+      label: More information
+      placeholder: (optional)
+    validations:
+      required: false
