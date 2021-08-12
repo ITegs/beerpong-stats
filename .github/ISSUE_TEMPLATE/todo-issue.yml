@@ -5,7 +5,7 @@ labels: [todo]
 assignees:
   - ITegs
 body:
-  -type: textarea
+  - type: textarea
     id: details
     attributes:
       label: More information
