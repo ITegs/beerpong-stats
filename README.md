@@ -6,7 +6,7 @@
 <div align=center>
 <img alt="Made by ITegs" src="https://img.shields.io/static/v1?label=MADE%20BY&message=ITegs&color=blueviolet&style=for-the-badge&logo=github&link=https://github.com/ITegs">
 <img alt="Contributions welcome" src="https://img.shields.io/static/v1?label=Contributions&message=welcome&color=green&style=for-the-badge">
-<img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/ITegs/beerpong-stats/master?style=for-the-badge">
+<img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/ITegs/beerpong-stats/NPM%20Tests/master?style=for-the-badge">
 </div>
 <br>
 <br>
