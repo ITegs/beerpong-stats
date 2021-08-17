@@ -33,8 +33,6 @@ const Tournament: React.FC = () => {
   const [winner, setWinner] = useState<any>("");
 
   const [removeTeam, setRemoveTeam] = useState<number[]>([]);
-  const [stateFinishedRound, setFinishedRound] = useState<boolean[]>([]);
-  var finishedRound: boolean[] = [];
 
   const [state, setState] = useState(0);
   const [teams, setTeams] = useState([
@@ -42,8 +40,8 @@ const Tournament: React.FC = () => {
     [0, 0],
   ]);
   const [rounds, setRounds] = useState([
-    [0, 1],
-    [2, 3],
+    [0, 1, false],
+    [2, 3, false],
   ]);
 
   function shuffle(array: any) {
@@ -101,8 +99,8 @@ const Tournament: React.FC = () => {
     const array = shuffle(arr);
 
     var roundList = [];
-    for (let index = 0; index < array.length; index = index + 2) {
-      const round = [array[index], array[index + 1]];
+    for (let index = 0; index < array.length; index += 2) {
+      const round = [array[index], array[index + 1], false];
       roundList.push(round);
     }
 
@@ -111,6 +109,10 @@ const Tournament: React.FC = () => {
   }
 
   function addGame() {
+    if (winner == "") {
+      return;
+    }
+
     var newGame = {
       red: teams[curRound[0]].map((r: any, i: number) => r),
       blue: teams[curRound[1]].map((r: any, i: number) => r),
@@ -144,15 +146,10 @@ const Tournament: React.FC = () => {
       setRemoveTeam([...removeTeam, curRound[0]]);
     }
 
-    rounds.map((r: number[], i: number) =>
-      // r == curRound ? setFinishedRound([...finishedRound, i]) : null
-      r == curRound
-        ? (finishedRound.splice(i, 0, true), setFinishedRound(finishedRound))
-        : null
-    );
-    console.log(finishedRound, stateFinishedRound);
+    rounds.map((r: any, i: number) => r == curRound && (r[3] = true));
 
     setShowModal(false);
+    setWinner("");
   }
 
   return (
@@ -176,7 +173,11 @@ const Tournament: React.FC = () => {
             </IonItem>
           ))}
           <div className="forwardButton">
-            <IonButton onClick={() => newTeams()} fill="outline" color="secondary">
+            <IonButton
+              onClick={() => newTeams()}
+              fill="outline"
+              color="secondary"
+            >
               <IonIcon icon={refresh} />
             </IonButton>
             <br />
@@ -202,20 +203,10 @@ const Tournament: React.FC = () => {
                   <div key={ii}>{playerData[t].name}</div>
                 ))}
               </IonLabel>
-              {stateFinishedRound.length != 0 ? (
-                stateFinishedRound[i] == true ? (
-                  <IonButton fill="outline" slot="end">
-                    <IonIcon icon={checkmark} />
-                  </IonButton>
-                ) : (
-                  <IonButton
-                    fill="outline"
-                    slot="end"
-                    onClick={() => (setCurRound(r), setShowModal(true))}
-                  >
-                    <IonIcon icon={arrowForwardCircle} />
-                  </IonButton>
-                )
+              {r[3] ? (
+                <IonButton fill="outline" slot="end">
+                  <IonIcon icon={checkmark} />
+                </IonButton>
               ) : (
                 <IonButton
                   fill="outline"
