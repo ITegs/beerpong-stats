@@ -24,6 +24,7 @@ const AddPlayer: React.FC = () => {
       playerData.push(newPlayer);
 
       setNewName("");
+      document.getElementById("textinput")?.setAttribute("value", "");
     } else {
       setShowAddPlayerAlert(true);
     }
@@ -62,6 +63,7 @@ const AddPlayer: React.FC = () => {
             <IonInput
               type="text"
               placeholder="Spielername"
+              id="textinput" 
               onIonChange={(e) => setNewName(e.detail.value!)}
             ></IonInput>
             <IonButton fill="outline" onClick={() => addPlayer()} type="submit">
