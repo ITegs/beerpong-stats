@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createRef, forwardRef, useRef, useState } from "react";
 import {
   IonAlert,
   IonButton,
@@ -19,13 +19,13 @@ const AddPlayer: React.FC = () => {
   const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
 
   function addPlayer() {
-    if (newName != "") {
+    if (newName != "" && newName != "YgNpvEkg=Q&nWN9Y7^cwma2axGs5u6CFKCF-$*$PbB7M?vFWBQ#kBH9=WzDUd6R!Eq=9298=7C5BdLW%FN_CcPDcG9g8^5vDGuLc") {
       var newPlayer = { name: newName, playedGames: 0, won: 0, lost: 0 };
       playerData.push(newPlayer);
 
       setNewName("");
-      document.getElementById("textinput")?.setAttribute("value", "");
     } else {
+      setNewName("");
       setShowAddPlayerAlert(true);
     }
   }
@@ -50,7 +50,7 @@ const AddPlayer: React.FC = () => {
                 key={i}
                 size="small"
                 onClick={() => (
-                  playerData.splice(i, 1), setNewName(Math.random().toString())
+                  playerData.splice(i, 1), setNewName("YgNpvEkg=Q&nWN9Y7^cwma2axGs5u6CFKCF-$*$PbB7M?vFWBQ#kBH9=WzDUd6R!Eq=9298=7C5BdLW%FN_CcPDcG9g8^5vDGuLc")
                 )}
               >
                 {p.name}
@@ -60,10 +60,9 @@ const AddPlayer: React.FC = () => {
           </div>
 
           <div className="addPlayerForm">
-            <IonInput
+            <IonInput         
               type="text"
               placeholder="Spielername"
-              id="textinput" 
               onIonChange={(e) => setNewName(e.detail.value!)}
             ></IonInput>
             <IonButton fill="outline" onClick={() => addPlayer()} type="submit">
