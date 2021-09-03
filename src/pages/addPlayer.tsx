@@ -62,6 +62,11 @@ const AddPlayer: React.FC = () => {
             <IonInput
               type="text"
               placeholder="Spielername"
+              value={newName}
+              autocapitalize="on"
+              enterkeyhint="enter"
+              clearOnEdit={true}
+              onKeyUp={(e) => e.key == "Enter" && addPlayer()}
               onIonChange={(e) => setNewName(e.detail.value!)}
             ></IonInput>
             <IonButton fill="outline" onClick={() => addPlayer()} type="submit">
@@ -69,11 +74,7 @@ const AddPlayer: React.FC = () => {
             </IonButton>
           </div>
           <div className="playerFormSubmit">
-            <IonButton
-              color="success"
-              size="large"
-              routerLink="/home"
-            >
+            <IonButton color="success" size="large" routerLink="/home">
               <IonIcon icon={checkmark}></IonIcon>
             </IonButton>
           </div>
