@@ -19,13 +19,12 @@ const AddPlayer: React.FC = () => {
   const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
 
   function addPlayer() {
-    if (newName != "" && newName != "YgNpvEkg=Q&nWN9Y7^cwma2axGs5u6CFKCF-$*$PbB7M?vFWBQ#kBH9=WzDUd6R!Eq=9298=7C5BdLW%FN_CcPDcG9g8^5vDGuLc") {
+    if (newName != "") {
       var newPlayer = { name: newName, playedGames: 0, won: 0, lost: 0 };
       playerData.push(newPlayer);
 
       setNewName("");
     } else {
-      setNewName("");
       setShowAddPlayerAlert(true);
     }
   }
@@ -50,7 +49,7 @@ const AddPlayer: React.FC = () => {
                 key={i}
                 size="small"
                 onClick={() => (
-                  playerData.splice(i, 1), setNewName("YgNpvEkg=Q&nWN9Y7^cwma2axGs5u6CFKCF-$*$PbB7M?vFWBQ#kBH9=WzDUd6R!Eq=9298=7C5BdLW%FN_CcPDcG9g8^5vDGuLc")
+                  playerData.splice(i, 1), setNewName(Math.random().toString())
                 )}
               >
                 {p.name}
@@ -60,7 +59,7 @@ const AddPlayer: React.FC = () => {
           </div>
 
           <div className="addPlayerForm">
-            <IonInput         
+            <IonInput
               type="text"
               placeholder="Spielername"
               onIonChange={(e) => setNewName(e.detail.value!)}
