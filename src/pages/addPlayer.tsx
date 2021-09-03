@@ -17,6 +17,7 @@ import { playerData } from "../data/data";
 const AddPlayer: React.FC = () => {
   const [newName, setNewName] = useState<string>("");
   const [showAddPlayerAlert, setShowAddPlayerAlert] = useState(false);
+  const [errState, setErrState] = useState(false); //state to update the page
 
   function addPlayer() {
     if (newName != "") {
@@ -49,7 +50,7 @@ const AddPlayer: React.FC = () => {
                 key={i}
                 size="small"
                 onClick={() => (
-                  playerData.splice(i, 1), setNewName(Math.random().toString())
+                  playerData.splice(i, 1), setErrState(!errState)
                 )}
               >
                 {p.name}
