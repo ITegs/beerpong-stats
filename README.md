@@ -5,7 +5,7 @@
 > I am currently migrating from Ionic to ReactJS
 
 > Please note that this project is currently in construction and that future releases of Beepong-Stats will be completely web-based. \
-> :heavy_exclamation_mark: The previous React Native App can be found [here](https://github.com/ITegs/beerpong-stats/releases/tag/alpha)!
+> :heavy_exclamation_mark: The previous React Native App can be found [here](https://github.com/ITegs/beerpong-stats/tree/alpha)!
 
 ---
 
