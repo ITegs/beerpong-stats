@@ -1,0 +1,19 @@
+:root {
+  --bg: #cac4ce;
+  --text: #32292f;
+  --accent1: #f6d56a;
+  --accent2: #7a46c5;
+  --accent2: #1d7874;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: var(--bg);
+  text-align: center;
+  min-height: 100vh;
+}
