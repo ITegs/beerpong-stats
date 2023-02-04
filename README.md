@@ -1,5 +1,9 @@
 # :video_game: Beepong-Stats
 
+<div align=center>
+<img src="assets/BeerPongStats.jpeg" width=600 />
+</div>
+
 ### :warning: Disclaimer
 
 > I am currently migrating from Ionic to ReactJS
