@@ -1,8 +1,8 @@
 :root {
   /* colors */
-  --primary: #293241;
+  --primary: #3d5a80;
   --secondary: #ee6c4d;
-  --tertiary: #3d5a80;
+  --tertiary: #293241;
   --background: #f9f9f9;
   --blue: #586ddc;
   --red: #ff2c2c;
@@ -16,7 +16,7 @@
 }
 
 .App {
-  background-color: var(--bg);
+  background-color: var(--background);
   text-align: center;
   min-height: 100vh;
 }
