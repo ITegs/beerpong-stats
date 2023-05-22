@@ -1,0 +1,24 @@
+.HeaderDouble {
+  background-color: var(--tertiary);
+  height: 12vh;
+  border-radius: 0 0 1em 1em;
+}
+
+.HeaderContainer {
+  display: flex;
+  background-color: var(--primary);
+  border-radius: 0 0 1em 1em;
+  height: 10vh;
+}
+
+.HeaderContainer h1 {
+  color: var(--background);
+  font-family: "Bungee";
+  font-size: 1.3rem;
+  margin: 0.5rem 1rem;
+  padding-top: 1.5em;
+}
+
+.HeaderContainer img {
+  height: 10vh;
+}
