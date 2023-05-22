@@ -1,9 +1,12 @@
 :root {
-  --bg: #cac4ce;
-  --text: #32292f;
-  --accent1: #f6d56a;
-  --accent2: #7a46c5;
-  --accent2: #1d7874;
+  /* colors */
+  --primary: #293241;
+  --secondary: #ee6c4d;
+  --tertiary: #3d5a80;
+  --background: #f9f9f9;
+  --blue: #586ddc;
+  --red: #ff2c2c;
+  --gold: #b08d57;
 }
 
 * {
