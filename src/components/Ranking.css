@@ -38,12 +38,12 @@
   background-color: var(--tertiary);
   padding: 0.5em;
   border-radius: 80%;
-  height: 4em;
-  width: 4em;
+  height: 5em;
+  width: 5em;
 }
 
 .RankingSecond b {
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 .RankingThird {
@@ -55,10 +55,10 @@
   background-color: var(--tertiary);
   padding: 0.5em;
   border-radius: 80%;
-  height: 4em;
-  width: 4em;
+  height: 5em;
+  width: 5em;
 }
 
 .RankingThird b {
-  font-size: 2em;
+  font-size: 2.5em;
 }
