@@ -1,0 +1,64 @@
+.RankingContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--secondary);
+  padding: 1em;
+  margin: 1em;
+  border-radius: 1em;
+  color: var(--background);
+
+  box-shadow: 3px 3px 8px #818181;
+}
+
+.RankingFirst {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4em;
+  background-color: var(--tertiary);
+  padding: 0.7em;
+  border-radius: 80%;
+  height: 6.5em;
+  width: 6.5em;
+}
+
+.RankingFirst b {
+  font-size: 4em;
+}
+
+.RankingSecond {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+  background-color: var(--tertiary);
+  padding: 0.5em;
+  border-radius: 80%;
+  height: 4em;
+  width: 4em;
+}
+
+.RankingSecond b {
+  font-size: 2em;
+}
+
+.RankingThird {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+  background-color: var(--tertiary);
+  padding: 0.5em;
+  border-radius: 80%;
+  height: 4em;
+  width: 4em;
+}
+
+.RankingThird b {
+  font-size: 2em;
+}
