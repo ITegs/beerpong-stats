@@ -13,12 +13,12 @@
 .HeaderContainer h1 {
   color: var(--background);
   font-size: 1.3rem;
-  margin-top: 2em;
+  margin-top: 1.5em;
   display: inline-block;
-  margin-left: -100px;
+  margin-left: -80px;
 }
 
 .HeaderContainer img {
-  width: 100px;
+  width: 80px;
   float: left;
 }
