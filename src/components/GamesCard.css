@@ -1,0 +1,60 @@
+.GamesCardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--tertiary);
+  margin: 1em 2em 1em 1em;
+  border-radius: 0em 4em 0em 4em;
+  padding-block: 1em;
+}
+
+.GamesCardHead {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1em;
+}
+
+.GamesCardHead h1 {
+  color: var(--secondary);
+  font-size: 2em;
+  font-weight: 400;
+  text-shadow: -1px -1px #000;
+}
+
+.GamesCardHead img {
+  width: 4em;
+  height: 4em;
+}
+
+.GamesCardTable {
+  color: var(--background);
+  width: 100%;
+  padding-bottom: 2em;
+}
+
+.GamesCardTable td {
+  font-size: 0.9em;
+  padding-block: 0.5em;
+}
+
+.GamesCardVS {
+  text-align: center;
+}
+
+.GamesCardRed {
+  color: var(--red);
+  text-shadow: 2px 2px 5px #252525;
+  text-align: left;
+  padding-left: 1em;
+}
+
+.GamesCardBlue {
+  color: var(--blue);
+  text-shadow: 2px 2px 5px #252525;
+  text-align: right;
+  padding-right: 1em;
+}
