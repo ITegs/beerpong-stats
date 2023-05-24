@@ -1,4 +1,4 @@
-# :video_game: Beepong-Stats
+# :video_game: Beepong-Stats [![CodeFactor](https://www.codefactor.io/repository/github/itegs/beerpong-stats/badge)](https://www.codefactor.io/repository/github/itegs/beerpong-stats)
 
 <div align=center>
 <img src="assets/BeerPongStats.jpeg" width=600 />
