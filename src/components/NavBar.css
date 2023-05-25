@@ -1,0 +1,12 @@
+.NavBarContainer {
+  background-color: #dddddd;
+  padding: 1em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.NavBarActive {
+}
+
+.NavBarInActive {
+}
