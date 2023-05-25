@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./GamesCard.css";
 import { getGames } from "../utils/storage";
 
 export default function GamesCard() {
   const [games, setGames] = useState(getGames());
+
+  useEffect(() => {
+    setGames(getGames());
+  }, [games]);
 
   return (
     <div className="GamesCardContainer">

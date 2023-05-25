@@ -48,15 +48,27 @@ export const newPlayer = (name: string) => {
 const Games: Game[] = [
   {
     id: "a0903ee2-248b-4c40-89b1-946821ebcea6",
-    blue: [Scoreboard[0], Scoreboard[1]],
     red: [Scoreboard[2], Scoreboard[3]],
+    blue: [Scoreboard[0], Scoreboard[1]],
     winner: "blue",
   },
   {
     id: "acbdc1a4-811c-47da-9023-4d324fc5a299",
-    blue: [Scoreboard[0], Scoreboard[2]],
-    red: [Scoreboard[1], Scoreboard[3]],
+    red: [Scoreboard[0], Scoreboard[3]],
+    blue: [Scoreboard[1], Scoreboard[2]],
     winner: "red",
+  },
+  {
+    id: "a0673ee2-248b-4c40-89b1-946821ebaea6",
+    red: [Scoreboard[1], Scoreboard[2]],
+    blue: [Scoreboard[0], Scoreboard[3]],
+    winner: "blue",
+  },
+  {
+    id: "a0903ee2-248b-4c40-89b1-946821ebaea6",
+    red: [Scoreboard[1], Scoreboard[3]],
+    blue: [Scoreboard[0], Scoreboard[2]],
+    winner: "blue",
   },
 ];
 
@@ -65,8 +77,8 @@ export const getGames = () => {
 };
 
 export const newGame = (
-  blue: [Player, Player],
   red: [Player, Player],
+  blue: [Player, Player],
   winner: "blue" | "red"
 ) => {
   const newGame: Game = {

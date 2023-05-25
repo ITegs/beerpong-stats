@@ -27,6 +27,8 @@
 
 .RankingFirst b {
   font-size: 4em;
+  color: var(--gold);
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .RankingSecond {
