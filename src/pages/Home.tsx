@@ -7,13 +7,15 @@ import GamesCard from "../components/GamesCard";
 import NavBar from "../components/NavBar";
 
 export default function Home() {
+  const [active, setActive] = React.useState("home");
+
   return (
     <div>
       <Ranking />
       <PlayerCard />
       <GamesCard />
       <div className="HomeNavBar">
-        <NavBar active="home" />
+        <NavBar active={active} setActive={setActive} />
       </div>
     </div>
   );
