@@ -1,12 +1,20 @@
 .NavBarContainer {
   background-color: #dddddd;
-  padding: 1em;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  padding: 0.3em 0 1.7em;
+  height: 12vh;
 }
 
 .NavBarActive {
+  border: 2px solid var(--secondary);
+  border-radius: 1em;
+  padding: 0.3em 3em;
+  transition: all 0.3s ease-in-out;
 }
 
 .NavBarInActive {
+  padding: 0.3em;
+  transition: all 0.3s ease-in-out;
 }
