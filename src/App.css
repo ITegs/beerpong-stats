@@ -21,3 +21,19 @@
   min-height: 100vh;
   font-family: "Bungee";
 }
+
+.Header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sep {
+  height: 11vh;
+}
+
+.NavBar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
