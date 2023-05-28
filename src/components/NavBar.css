@@ -1,20 +1,32 @@
 .NavBarContainer {
-  background-color: #dddddd;
+  background-color: var(--primary);
+  border-radius: 1em;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 0.3em 0 1.7em;
   height: 12vh;
+  color: var(--background);
+  font-size: 0.6em;
+  font-weight: 600;
+}
+
+.home {
+  padding-top: 1em;
+}
+
+.tournament {
+  padding-top: 1em;
 }
 
 .NavBarActive {
-  border: 2px solid var(--secondary);
-  border-radius: 1em;
-  padding: 0.3em 3em;
+  border: 2px solid var(--tertiary);
+  border-radius: 10px;
   transition: all 0.3s ease-in-out;
+  padding: 2px 5em;
 }
 
 .NavBarInActive {
-  padding: 0.3em;
   transition: all 0.3s ease-in-out;
+  padding: 2px 0;
 }
