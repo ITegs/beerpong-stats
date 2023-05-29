@@ -33,7 +33,7 @@ export const getScoreboard = () => {
   return Scoreboard;
 };
 
-export const newPlayer = (name: string) => {
+export const addPlayer = (name: string) => {
   const newPlayer: Player = {
     id: uuidv4(),
     name: name,
