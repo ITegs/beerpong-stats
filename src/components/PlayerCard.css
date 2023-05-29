@@ -41,11 +41,11 @@
 .PlayerCardTable th {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .PlayerCardTable td {
-  font-size: 0.75em;
+  font-size: 0.9em;
   padding-top: 0.5em;
 }
 

@@ -4,7 +4,10 @@ import "./PlayerCard.css";
 import { getScoreboard } from "../utils/storage";
 import { Player } from "../utils/types";
 
-export default function PlayerCard() {
+export default function PlayerCard(props: {
+  showAddPlayer: boolean;
+  setShowAddPlayer: Function;
+}) {
   const [sb, setSb] = useState<Player[]>([]);
   useEffect(() => {
     const temp = getScoreboard();
@@ -16,7 +19,11 @@ export default function PlayerCard() {
     <div className="PlayerCardContainer">
       <div className="PlayerCardHead">
         <h1 className="PlayerCardTitle">Player</h1>
-        <img src="/add.svg" alt="Add" />
+        <img
+          src="/add.svg"
+          alt="Add"
+          onClick={() => props.setShowAddPlayer(!props.showAddPlayer)}
+        />
       </div>
       <table className="PlayerCardTable">
         <tr>
