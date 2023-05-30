@@ -7,7 +7,7 @@ export type Player = {
 
 export type Game = {
   id: string;
-  red: [Player, Player];
-  blue: [Player, Player];
+  red: string[];
+  blue: string[];
   winner: "blue" | "red";
 };

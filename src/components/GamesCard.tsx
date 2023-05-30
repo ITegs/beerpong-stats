@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./GamesCard.css";
-import { getGames } from "../utils/storage";
+import { getGames, getScoreboard } from "../utils/storage";
 
-export default function GamesCard() {
+export default function GamesCard(props: {
+  showAddGame: boolean;
+  setShowAddGame: Function;
+}) {
   const [games, setGames] = useState(getGames());
 
   useEffect(() => {
@@ -13,13 +16,25 @@ export default function GamesCard() {
     <div className="GamesCardContainer">
       <div className="GamesCardHead">
         <h1 className="GamesCardTitle">Games</h1>
-        <img src="/add.svg" alt="Add" />
+        <img
+          src="/add.svg"
+          alt="Add"
+          onClick={() => props.setShowAddGame(!props.showAddGame)}
+        />
       </div>
       <table className="GamesCardTable">
         {games.map((game, index) => (
           <tr key={index}>
             <td className="GamesCardRed">
-              {game.red[0].name} <br /> {game.red[1].name}
+              {
+                getScoreboard().find((player) => player.id === game.red[0])
+                  ?.name
+              }
+              <br />
+              {
+                getScoreboard().find((player) => player.id === game.red[1])
+                  ?.name
+              }
             </td>
             <td className="GamesCardWin">
               {game.winner === "red" && <img src="/crown.svg" alt="win" />}
@@ -29,7 +44,15 @@ export default function GamesCard() {
               {game.winner === "blue" && <img src="/crown.svg" alt="win" />}
             </td>
             <td className="GamesCardBlue">
-              {game.blue[0].name} <br /> {game.blue[1].name}
+              {
+                getScoreboard().find((player) => player.id === game.blue[0])
+                  ?.name
+              }
+              <br />
+              {
+                getScoreboard().find((player) => player.id === game.blue[1])
+                  ?.name
+              }
             </td>
           </tr>
         ))}
