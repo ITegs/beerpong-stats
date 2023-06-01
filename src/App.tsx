@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -14,15 +14,15 @@ export default function App() {
         <Header />
       </div>
       <div className="sep" />
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
-      </BrowserRouter>
-      <div className="sep" />
+      </HashRouter>
+      {/* <div className="sep" />
       <div className="NavBar">
         <NavBar active={active} setActive={setActive} />
-      </div>
+      </div> */}
     </div>
   );
 }
