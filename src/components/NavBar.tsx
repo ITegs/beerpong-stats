@@ -6,7 +6,7 @@ export default function NavBar(props: { active: string; setActive: Function }) {
     <div className="NavBarContainer">
       <div className="home">
         <img
-          src="/home.svg"
+          src="./home.svg"
           alt="Home"
           className={
             props.active === "home" ? "NavBarActive" : "NavBarInActive"
@@ -17,7 +17,7 @@ export default function NavBar(props: { active: string; setActive: Function }) {
       </div>
       <div className="tournament">
         <img
-          src="/tournament.svg"
+          src="./tournament.svg"
           alt="Tournament"
           className={
             props.active === "tournament" ? "NavBarActive" : "NavBarInActive"

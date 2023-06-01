@@ -20,7 +20,7 @@ export default function PlayerCard(props: {
       <div className="PlayerCardHead">
         <h1 className="PlayerCardTitle">Player</h1>
         <img
-          src="/add.svg"
+          src="./add.svg"
           alt="Add"
           onClick={() => props.setShowAddPlayer(!props.showAddPlayer)}
         />

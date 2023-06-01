@@ -17,7 +17,7 @@ export default function GamesCard(props: {
       <div className="GamesCardHead">
         <h1 className="GamesCardTitle">Games</h1>
         <img
-          src="/add.svg"
+          src="./add.svg"
           alt="Add"
           onClick={() => props.setShowAddGame(!props.showAddGame)}
         />
@@ -37,11 +37,11 @@ export default function GamesCard(props: {
               }
             </td>
             <td className="GamesCardWin">
-              {game.winner === "red" && <img src="/crown.svg" alt="win" />}
+              {game.winner === "red" && <img src="./crown.svg" alt="win" />}
             </td>
             <td className="GamesCardVS">vs</td>
             <td className="GamesCardWin">
-              {game.winner === "blue" && <img src="/crown.svg" alt="win" />}
+              {game.winner === "blue" && <img src="./crown.svg" alt="win" />}
             </td>
             <td className="GamesCardBlue">
               {
