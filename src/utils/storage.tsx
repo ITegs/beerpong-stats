@@ -1,4 +1,4 @@
-import { Game, Player } from "./types";
+import { Game, Player, Team } from "./types";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -56,7 +56,7 @@ const Games: Game[] = [
       "ba85ca19-aa52-418c-bc95-8e310a29e56c",
       "c416c1f4-c58f-4251-86f8-6f5737a3e1a4",
     ],
-    winner: "blue",
+    winner: Team.RED,
   },
   {
     id: "acbdc1a4-811c-47da-9023-4d324fc5a299",
@@ -68,7 +68,7 @@ const Games: Game[] = [
       "c416c1f4-c58f-4251-86f8-6f5737a3e1a4",
       "11457752-1ff5-4ad0-a77a-68ebc5231bf3",
     ],
-    winner: "red",
+    winner: Team.BLUE,
   },
   {
     id: "a0673ee2-248b-4c40-89b1-946821ebaea6",
@@ -80,7 +80,7 @@ const Games: Game[] = [
       "ba85ca19-aa52-418c-bc95-8e310a29e56c",
       "97ae4c1a-7b5d-47e8-9f13-49fe8b6dd7cf",
     ],
-    winner: "blue",
+    winner: Team.BLUE,
   },
   {
     id: "a0903ee2-248b-4c40-89b1-946821ebaea6",
@@ -92,7 +92,7 @@ const Games: Game[] = [
       "ba85ca19-aa52-418c-bc95-8e310a29e56c",
       "11457752-1ff5-4ad0-a77a-68ebc5231bf3",
     ],
-    winner: "blue",
+    winner: Team.RED,
   },
 ];
 
@@ -100,11 +100,7 @@ export const getGames = () => {
   return Games;
 };
 
-export const addGame = (
-  red: string[],
-  blue: string[],
-  winner: "blue" | "red"
-) => {
+export const addGame = (red: string[], blue: string[], winner: Team) => {
   const newGame: Game = {
     id: uuidv4(),
     blue: blue,
@@ -114,13 +110,13 @@ export const addGame = (
   Games.push(newGame);
   red.forEach((player) => {
     Scoreboard.find((p) => p.id === player)!.games++;
-    if (winner === "red") {
+    if (winner === Team.RED) {
       Scoreboard.find((p) => p.id === player)!.wins++;
     }
   });
   blue.forEach((player) => {
     Scoreboard.find((p) => p.id === player)!.games++;
-    if (winner === "blue") {
+    if (winner === Team.BLUE) {
       Scoreboard.find((p) => p.id === player)!.wins++;
     }
   });

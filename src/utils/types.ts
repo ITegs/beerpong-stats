@@ -9,5 +9,10 @@ export type Game = {
   id: string;
   red: string[];
   blue: string[];
-  winner: "blue" | "red";
+  winner: Team;
 };
+
+export enum Team {
+  RED,
+  BLUE,
+}

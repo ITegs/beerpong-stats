@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./GamesCard.css";
 import { getGames, getScoreboard } from "../utils/storage";
+import { Team } from "../utils/types";
 
 export default function GamesCard(props: {
   showAddGame: boolean;
@@ -37,11 +38,11 @@ export default function GamesCard(props: {
               }
             </td>
             <td className="GamesCardWin">
-              {game.winner === "red" && <img src="./crown.svg" alt="win" />}
+              {game.winner === Team.RED && <img src="./crown.svg" alt="win" />}
             </td>
             <td className="GamesCardVS">vs</td>
             <td className="GamesCardWin">
-              {game.winner === "blue" && <img src="./crown.svg" alt="win" />}
+              {game.winner === Team.BLUE && <img src="./crown.svg" alt="win" />}
             </td>
             <td className="GamesCardBlue">
               {
