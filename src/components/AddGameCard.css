@@ -18,19 +18,47 @@
   padding: 1em;
 }
 
+.AddGameRed {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .AddGameCardSelectRed {
   color: var(--red);
   font-size: 1em;
   font-family: "Bungee";
   padding: 1em 2em;
-  align-self: flex-start;
   margin-left: 1em;
+}
+
+.RedWin {
+  padding-right: 2em;
+  height: 1.5em;
+  transition: all 0.5s ease;
+}
+
+.RedWinDisabled {
+  padding-right: 2em;
+  height: 1.5em;
+  opacity: 0.2;
+  transition: all 0.5s ease;
 }
 
 .AddGameCardVS {
   color: var(--secondary);
   font-size: 1.4em;
   padding: 0.3em;
+}
+
+.AddGameBlue {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .AddGameCardSelectBlue {
@@ -40,6 +68,19 @@
   padding: 1em 2em;
   align-self: flex-end;
   margin-right: 1em;
+}
+
+.BlueWin {
+  padding-left: 2em;
+  height: 1.5em;
+  transition: all 0.5s ease;
+}
+
+.BlueWinDisabled {
+  padding-left: 2em;
+  height: 1.5em;
+  opacity: 0.2;
+  transition: all 0.5s ease;
 }
 
 .AddGameCardButtons {
