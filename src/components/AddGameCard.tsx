@@ -10,7 +10,7 @@ export default function AddGameCard(props: {
 }) {
   const [red, setRed] = useState<string[]>([]);
   const [blue, setBlue] = useState<string[]>([]);
-  const [winner, setWinner] = useState<Team>(Team.RED);
+  const [winner, setWinner] = useState<Team>();
 
   return (
     <div className="AddGameCardContainer">
@@ -73,8 +73,10 @@ export default function AddGameCard(props: {
         <p
           className="AddGameCardButton AddButton"
           onClick={() => {
-            addGame(red, blue, winner);
-            props.setShowAddGame(!props.showAddGame);
+            if (winner) {
+              addGame(red, blue, winner);
+              props.setShowAddGame(!props.showAddGame);
+            }
           }}
         >
           Add
