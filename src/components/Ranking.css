@@ -10,6 +10,7 @@
   color: var(--background);
 
   box-shadow: 3px 3px 8px #818181;
+  transition: all 0.5s ease-in-out;
 }
 
 .RankingFirst {

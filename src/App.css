@@ -22,6 +22,12 @@
   font-family: "Bungee";
 }
 
+.Hide {
+  display: none;
+  opacity: 0;
+  height: 0;
+}
+
 .Header {
   position: fixed;
   top: 0;

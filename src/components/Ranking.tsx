@@ -11,7 +11,11 @@ export default function Ranking() {
   }, [scoreboard]);
 
   return (
-    <div className="RankingContainer">
+    <div
+      className={
+        scoreboard.length >= 3 ? "RankingContainer" : "RankingContainer Hide"
+      }
+    >
       <div className="RankingSecond">
         <b>2</b>
         <p>
