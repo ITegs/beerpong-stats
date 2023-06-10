@@ -73,7 +73,7 @@ export default function AddGameCard(props: {
         <p
           className="AddGameCardButton AddButton"
           onClick={() => {
-            if (winner) {
+            if (winner !== undefined) {
               addGame(red, blue, winner);
               props.setShowAddGame(!props.showAddGame);
             }
